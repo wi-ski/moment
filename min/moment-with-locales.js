@@ -2714,7 +2714,8 @@
             if (tZone === 0) {
                 this.utcOffset(0, true);
             } else {
-                this.utcOffset(offsetFromString(matchOffset, this._i));
+                this.utcOffset(tZone);
+                // this.utcOffset(offsetFromString(matchOffset, this._i));
             }
         }
         return this;

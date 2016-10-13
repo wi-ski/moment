@@ -165,11 +165,19 @@ export function setOffsetToParsedOffset () {
         this.utcOffset(this._tzm);
     } else if (typeof this._i === 'string') {
         var tZone = offsetFromString(matchOffset, this._i);
-
+        console.log('|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*');
+        console.log('|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*');
+        console.log('|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*');
+        console.log(tZone);
+        console.log(typeof tZone);
+        console.log('|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*');
+        console.log('|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*');
+        console.log('|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*|*');
         if (tZone === 0) {
             this.utcOffset(0, true);
         } else {
-            this.utcOffset(offsetFromString(matchOffset, this._i));
+            this.utcOffset(tZone);
+            // this.utcOffset(offsetFromString(matchOffset, this._i));
         }
     }
     return this;

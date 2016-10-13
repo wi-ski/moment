@@ -1,11 +1,16 @@
+/*global QUnit:false*/
+
 import { module, test } from '../qunit';
 import moment from '../../moment';
+
 
 module('zones', {
     'setup': function () {
         test.expectedDeprecations('moment().zone');
     }
 });
+
+
 
 test('set zone', function (assert) {
     var zone = moment();
@@ -465,6 +470,18 @@ test('parse zone without a timezone', function (assert) {
     assert.equal(
         m.format('M D YYYY HH:mm:ss ZZ'),
         '2 1 2016 00:00:00 +0000',
+        'Not providing a timezone should keep the time and change the zone to 0'
+    );
+});
+
+//only('something here!!', function (assert) {
+test('something here!!', function (assert) {
+    test.expectedDeprecations();
+    // var m = moment.parseZone('2016-02-01T00:00:00');
+    var m = moment.parseZone('2016-05-04T00:00:00Z');
+    assert.equal(
+        m.format('M D YYYY HH:mm:ss ZZ'),
+        '5 4 2016 00:00:00 +0000',
         'Not providing a timezone should keep the time and change the zone to 0'
     );
 });
