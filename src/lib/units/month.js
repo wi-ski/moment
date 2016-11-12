@@ -193,7 +193,15 @@ export function setMonth (mom, value) {
 }
 
 export function getSetMonth (value) {
-    if (value != null) {
+    var valPresent = (value != null);
+    var valIsValid = !isNaN(+value);
+
+    if(valPresent && !valIsValid){ //If value passed is garbage, invalidate the moment.
+      this._d = new Date(NaN);
+      return;
+    }
+
+    if (valPresent) {
         setMonth(this, value);
         hooks.updateOffset(this, true);
         return this;

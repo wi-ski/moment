@@ -6,13 +6,17 @@ import isFunction from '../utils/is-function';
 
 export function makeGetSet (unit, keepTime) {
     return function (value) {
-        if (value != null) {
-            set(this, unit, value);
-            hooks.updateOffset(this, keepTime);
-            return this;
-        } else {
-            return get(this, unit);
+
+        if(!(value != null)) return get(this, unit); //If val isnt present, execute getter.
+
+        if(isNaN(+value)){ //If value passed is garbage, invalidate
+            this._d = new Date(NaN);
+            return;
         }
+
+        set(this, unit, value);
+        hooks.updateOffset(this, keepTime);
+        return this;
     };
 }
 

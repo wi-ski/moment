@@ -31,6 +31,15 @@ addParseToken(['DDD', 'DDDD'], function (input, array, config) {
 // MOMENTS
 
 export function getSetDayOfYear (input) {
+
+    var valPresent = (input != null);
+    var valIsValid = !isNaN(+input);
+
+    if(valPresent && !valIsValid){ //If input passed is garbage, invalidate the moment.
+      this._d = new Date(NaN);
+      return;
+    }
+
     var dayOfYear = Math.round((this.clone().startOf('day') - this.clone().startOf('year')) / 864e5) + 1;
     return input == null ? dayOfYear : this.add((input - dayOfYear), 'd');
 }
